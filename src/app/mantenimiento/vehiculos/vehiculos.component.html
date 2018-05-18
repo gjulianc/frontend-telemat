@@ -1,0 +1,89 @@
+<!-- <div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarUsuario( input.value )" type="text" class="form-control" placeholder="Buscar usuario..." />
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+
+<div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <!-- column -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <h4 class="card-title">Vehículos Registrados </h4>
+                        <h6 class="card-subtitle">Total de Vehículos registrados en el sistema: <span>{{ total }}</span></h6>
+                    </div>
+                    <div class="col-3">
+                        <button [routerLink]="['/mantenimiento/vehiculo', 'nuevo']" type="button" class="btn btn-outline-info btn-rounded">
+                      <i class="fa fa-plus"></i> Registrar Vehículo
+                  </button>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Matricula</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Empresa</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vehiculo of vehiculos">
+                                <td>
+                                    <img (click)="mostrarModal( vehiculo.id )" [src]="vehiculo.img | imagen:'vehiculos'" class="img-50 img-circle pointer">
+                                </td>
+                                <td>{{ vehiculo.matricula }}</td>
+                                <td><span class="text-muted"> {{vehiculo.marca}}</span> </td>
+                                <td>
+                                    <div class="text-muted">{{vehiculo.modelo}}</div>
+                                </td>
+                                <td>
+                                    <button [routerLink]="['/mantenimiento/vehiculo', vehiculo.id ]" class="btn btn-outline-info">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                    <button (click)="borrarVehiculo( vehiculo )" class="btn btn-outline-danger">
+                                  <i class="fa fa-trash-o"></i>
+                                </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesde(-5)" class="btn btn-secondary">
+                        Anteriores
+                      </button>
+                    <button (click)="cambiarDesde(5)" class="btn btn-secondary">
+                        Siguientes
+                      </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

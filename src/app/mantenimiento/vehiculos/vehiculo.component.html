@@ -1,0 +1,261 @@
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="m-t-30 text-center">
+                    <img (click)="mostrarModal( vehiculo.id )" [src]="vehiculo.img | imagen:'vehiculos'" class="w150 img-circle pointer">
+
+                    <h4 class="card-title m-t-10">1232456 Km´s</h4>
+                    <h6 class="card-subtitle"></h6>
+                    <div class="row text-center justify-content-md-center">
+                        <div class="col-12">Mátricula: {{vehiculo.matricula}}</div>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <hr> </div>
+            <div class="card-body"> <small class="text-muted">Marca </small>
+                <h6>{{vehiculo.marca}}</h6> <small class="text-muted p-t-30 db">Modelo</small>
+                <h6>{{vehiculo.modelo}}</h6> <small class="text-muted p-t-30 db">Nº Chasis</small>
+                <h6>{{vehiculo.numeroChasis}}</h6>
+                <small class="text-muted p-t-30 db">Datos del Seguro</small>
+
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Timeline</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Ficha Vehículo</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Edición</a> </li>
+
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!--first tab-->
+                <div class="tab-pane active" id="home" role="tabpanel">
+                    <div class="card-body">
+                        <div class="profiletimeline">
+                            <div class="sl-item" *ngFor="let timeline of timelines">
+                                <div class="sl-left"> <img src="assets/images/users/1.jpg" alt="user" class="img-circle" /> </div>
+                                <div class="sl-right">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                <h5>{{timeline.usuario}}</h5>
+                                            </div>
+                                            <div class="col col-6 text-right"><span class="sl-date">{{timeline.created_at | date:'yyyy-MM-dd HH:mm':'+0200' }}</span></div>
+
+                                        </div>
+                                        <i class="fa fa-wrench"> {{timeline.tipo}} </i>
+                                        <br>
+                                        <p><a>{{timeline.descripcion}}</a></p>
+
+                                        <!-- <div class="row">
+                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="assets/images/big/img1.jpg" class="img-responsive radius" /></div>
+                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="assets/images/big/img2.jpg" class="img-responsive radius" /></div>
+                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="assets/images/big/img3.jpg" class="img-responsive radius" /></div>
+                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="assets/images/big/img4.jpg" class="img-responsive radius" /></div>
+                                        </div>
+                                        <div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">2 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> </div> -->
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="profile" role="tabpanel">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Empresa </strong>
+                                <br>
+                                <p class="text-muted">QUALIMOVE</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Matricula</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.matricula}}</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Fecha Matriculación</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.fechaAlta}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Marca</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.marca}}</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Modelo</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.modelo}}</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6"> <strong>Nº Chasis</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.numeroChasis}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Aseguradora </strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.aseguradora}}</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Nº Póliza</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.nPolizaSeguro}}</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Vencimieto Seguro</strong>
+                                <br>
+                                <p class="text-muted">{{vehiculo.fVencimientoSeguro}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="m-t-30">{{vehiculo.notas}}
+                        </p>
+                        <h4 class="font-medium m-t-30">ITV</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12 b-r"> <strong>Fecha Inspección </strong>
+                                <br>
+                                <p class="text-muted">12/01/2018</p>
+                            </div>
+                            <div class="col-md-6 col-xs-12 b-r"> <strong>Fecha Próxima ITV</strong>
+                                <br>
+                                <p class="text-muted">12/01/2019</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <h4 class="font-medium m-t-30">Próximas Revisiones</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12 b-r"> <strong>Mantenimiento 15.000 Km</strong>
+
+                            </div>
+                            <div class="col-md-6 col-xs-12 b-r"> <strong>Km. Próxima revisión</strong>
+                                <br>
+                                <p class="text-muted">182.000 Km.</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12 b-r"> <strong>Mantenimiento 30.000 Km</strong>
+
+                            </div>
+                            <div class="col-md-6 col-xs-12 b-r"> <strong>Km. Próxima revisión</strong>
+                                <br>
+                                <p class="text-muted">182.000 Km.</p>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="settings" role="tabpanel">
+                    <div class="card-body">
+                        <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarvehiculo(f)" class="form-horizontal form-material">
+                            <div class="row">
+                                <div class="column col-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Matricula</label>
+                                        <div class="col-md-12">
+                                            <input type="text" [(ngModel)]="vehiculo.matricula" name="nombre" placeholder="Introduzca la matricula" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column col-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-12">Fecha Matriculación</label>
+                                        <div class="col-sm-12">
+                                            <input type="date" [(ngModel)]="vehiculo.fechaAlta" name="fechaAlta" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="column col-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Marca</label>
+                                        <div class="col-md-12">
+                                            <input type="text" [(ngModel)]="vehiculo.marca" name="marca" required placeholder="Introduzca la marca" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column col-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Modelo</label>
+                                        <div class="col-md-12">
+                                            <input type="text" [(ngModel)]="vehiculo.modelo" name="modelo" required placeholder="Introduzca el modelo" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12">Nº Chasis</label>
+                                <div class="col-md-12">
+                                    <input type="text" [(ngModel)]="vehiculo.numeroChasis" name="numeroChasis" placeholder="Introduzca el numero de chasis" required class="form-control form-control-line">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="column col-4">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Nº Poliza Seguro</label>
+                                        <div class="col-md-12">
+                                            <input type="text" [(ngModel)]="vehiculo.nPolizaSeguro" name="nPolizaSeguro" placeholder="Introduzca el nº de poliza" required class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column col-4">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Aseguradora</label>
+                                        <div class="col-md-12">
+                                            <input type="text" [(ngModel)]="vehiculo.aseguradora" name="aseguradora" placeholder="Introduzca la aseguradora" required class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column col-4">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Vencimiento Seguro</label>
+                                        <div class="col-md-12">
+                                            <input type="date" [(ngModel)]="vehiculo.fVencimientoSeguro" name="fVencimientoSeguro" placeholder="Introduzca fecha" required class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12">Notas</label>
+                                <div class="col-md-12">
+                                    <textarea rows="5" [(ngModel)]="vehiculo.notas" name="notas" placeholder="Escriba aquí..." class="form-control form-control-line"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button *ngIf="!esNuevo" class="btn btn-success" type="submit">Actualizar Vehículo</button>
+                                    <button *ngIf="esNuevo" class="btn btn-success" type="submit">Guardar Vehículo</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>

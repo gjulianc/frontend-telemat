@@ -1,0 +1,89 @@
+<!-- <div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarUsuario( input.value )" type="text" class="form-control" placeholder="Buscar usuario..." />
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+
+<div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <!-- column -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <h4 class="card-title">Usuarios Registrados </h4>
+                        <h6 class="card-subtitle">Total de Usuarios registrados en el sistema: <span>{{ total }}</span></h6>
+                    </div>
+                    <div class="col-3">
+                        <button [routerLink]="['/mantenimiento/usuario', 'nuevo']" type="button" class="btn btn-outline-info btn-rounded">
+                      <i class="fa fa-plus"></i> Crear Usuario
+                  </button>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Empresa</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td>
+                                    <img (click)="mostrarModal( usuario.id )" [src]="usuario.img | imagen:'usuarios'" class="img-50 img-circle pointer">
+                                </td>
+                                <td>{{usuario.nombre}}</td>
+                                <td><span class="text-muted"><i class="fa fa-at"></i> {{usuario.email}}</span> </td>
+                                <td>
+                                    <div class="label label-table label-success">{{usuario.role}}</div>
+                                </td>
+                                <td>
+                                    <button [routerLink]="['/mantenimiento/usuario', usuario.id ]" class="btn btn-outline-info">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                    <button (click)="borrarUsuario( usuario )" class="btn btn-outline-danger">
+                                  <i class="fa fa-trash-o"></i>
+                                </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesde(-5)" class="btn btn-secondary">
+                        Anteriores
+                      </button>
+                    <button (click)="cambiarDesde(5)" class="btn btn-secondary">
+                        Siguientes
+                      </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
